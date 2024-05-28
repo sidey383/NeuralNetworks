@@ -16,13 +16,13 @@ RNN (персептрон с обратной связью);
 GRU;
 LSTM.
 Сравнить результаты обучения данных моделей при прогнозировании энергопотребления.
-Ссылка на датасет -  UCI Machine Learning Repository: Steel Industry Energy Consumption Dataset Data Set
+Ссылка на датасет -  [UCI Machine Learning Repository: Steel Industry Energy Consumption Dataset Data Set](https://archive.ics.uci.edu/ml/datasets/Mushroom)
 
 ## 4. Сверточные нейросети
 Реализовать сверточную сеть с архитектурой LeNet-5 для классификации рукописных цифр.
-Ссылки на датасет:
-MNIST in CSV | Kaggle - в csv;
-heanuea/MNIST: THE MNIST DATABASE of handwritten digits (github.com) -  в архиве.
+Ссылки на датасет: <br/>
+[MNIST in CSV | Kaggle](https://www.kaggle.com/datasets/oddrationale/mnist-in-csv/code) - в csv; <br/>
+[heanuea/MNIST: THE MNIST DATABASE of handwritten digits (github.com)](https://github.com/heanuea/MNIST?ysclid=lebiecmflx994146356) -  в архиве.
 
 # Правила сдачи практических работ
 1. Результатом лабораторной работы является собственная реализация алгоритмов на одном из языков программирования: Python, C++ или Java. Для контроля результата обязательна реализация алгоритмов на языке Python c использованием стандартных библиотек. 
