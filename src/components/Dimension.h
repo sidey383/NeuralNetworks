@@ -73,10 +73,10 @@ namespace TPNN {
     };
 
 
-    template<int N, int M>
-    size_t toFlat(Dimension<N> d, Pose<M> p) {
+    template<int N>
+    size_t toFlat(Dimension<N> d, Pose<N> p) {
         size_t res = p[0];
-        size_t prevSize = d[0];
+        size_t prevSize = d[1];
         for (size_t i = 1; i < N; i++) {
             res += p[i] * prevSize;
             prevSize *= d[i];

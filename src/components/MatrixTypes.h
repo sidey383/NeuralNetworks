@@ -2,7 +2,7 @@
 
 #include <cstddef>
 #include <vector>
-#include "DimensionalSizes.h"
+#include "Dimension.h"
 
 namespace TPNN {
 

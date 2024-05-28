@@ -1,25 +1,26 @@
 #pragma once
 #include <iostream>
+#include "Layer.h"
 
 namespace TPNN {
 
-    class DenseLayer {
+    class DenseLayer : public Layer<1, 1> {
     public:
-        ~DenseLayer();
+        ~DenseLayer() override;
         DenseLayer();
         DenseLayer(size_t input, size_t output);
         explicit DenseLayer(std::istream& s);
         [[nodiscard]] size_t inputSize() const;
         [[nodiscard]] size_t outputSize() const;
         void resize(size_t input, size_t output);
-        void apply(const std::vector<float>& input, std::vector<float>& output);
-        void applyError(const std::vector<float>& input, const std::vector<float>&error, std::vector<float>& propagatedError, float weight);
-        void debugPrint();
+        void apply(const Tensor<1, float>& input, Tensor<1, float>& output) override;
+        void applyError(const Tensor<1, float>& error, Tensor<1, float>& propagatedError, float weight) override;
+        void debugPrint() override;
         void save(std::ostream& s) const;
 
     private:
-        std::vector<std::vector<float>> _weights{0};
-        std::vector<float> _bias{0};
+        Tensor<2, float> _weights{};
+        Tensor<1, float> _bias{};
     };
 
 }

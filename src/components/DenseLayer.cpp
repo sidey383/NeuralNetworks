@@ -37,24 +37,27 @@ void TPNN::DenseLayer::resize(size_t input, size_t output) {
 TPNN::DenseLayer::~DenseLayer() = default;
 
 size_t TPNN::DenseLayer::inputSize() const {
-    return _weights.empty() ? 0 : _weights[0].size();
+    return _weights.getDimensions()[0];
 }
 
 size_t TPNN::DenseLayer::outputSize() const {
-    return _weights.size();
+    return _weights.getDimensions()[1];
 }
 
-void TPNN::DenseLayer::apply(const std::vector<float> &input, std::vector<float> &output) {
-    for (size_t o = 0; o < _weights.size(); o++) {
+void TPNN::DenseLayer::apply(const Tensor<1, float> &input, Tensor<1, float> &output) {
+    if (input.size() != _weights.getDimensions()[0])
+        throw std::invalid_argument("Wrong input size");
+    if (output.size() != _weights.getDimensions()[1])
+        throw std::invalid_argument("Wrong output size");
+    for (size_t o = 0; o < _weights.getDimensions()[1]; o++) {
         output[o] = _bias[o];
-        std::vector<float> l = _weights[o];
-        for (size_t i = 0; i < l.size(); i++) {
-            output[o] += l[i] * input[i];
+        for (size_t i = 0; i < _weights.getDimensions()[0]; i++) {
+            output[o] += _weights.val(Pose<2>{i, o}) * input[i];
         }
     }
 }
 
-void TPNN::DenseLayer::applyError(const std::vector<float> &input, const std::vector<float> &error,
+void TPNN::DenseLayer::applyError(const Tensor<1, float> &error,
                                   std::vector<float> &propagatedError, float weight) {
     size_t inputSize = this->inputSize();
     size_t outputSize = this->outputSize();
